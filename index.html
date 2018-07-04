@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Polaroid Animation</title>
+  <link rel="stylesheet" href="main.css">
+  <link href="https://fonts.googleapis.com/css?family=Sacramento" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Annie+Use+Your+Telescope" rel="stylesheet">
+</head>
+
+<body>
+
+  <div id="background-wrap">
+
+
+    <div class="x1">
+        <div class="cloud"></div>
+    </div>
+
+    <div class="x2">
+        <div class="cloud"></div>
+    </div>
+
+    <div class="x3">
+        <div class="cloud"></div>
+    </div>
+
+    <div class="x4">
+        <div class="cloud"></div>
+    </div>
+
+    <div class="x5">
+        <div class="cloud"></div>
+    </div>
+  </div>
+
+  <div id="title" class="fill">
+    <!-- <h1 class="title">MEMORYLANE</h1> -->
+  </div>
+
+  <div id="animation" class="page">
+
+    <div class="camera">
+      <div class="strip"></div>
+      <div class="lens"></div>
+      <div class="led"></div>
+      <div onclick="snap()" id="toggle" class="btn"></div>
+    </div>
+
+    <div id="polaroid" class="polaroid">
+      <img class="frame" src="https://images.unsplash.com/photo-1446160657592-4782fb76fb99?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=8dd288abc4f7448c467ec06a5a4524c4&auto=format&fit=crop&w=1296&q=60">
+      <button onclick="create()" class="go" type="button" name="button">CREATE NEW MEMORY</button>
+    </div>
+  </div>
+
+  <div id="home" class="page">
+      <div class="signin-box">
+          <div class="sign-in-inputs">
+              <form>
+                  <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
+                  <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+              </form>
+          </div>
+          <div class="side-by-side">
+              <div id="remember" class="checkbox">
+                  <label>
+          <input class="checkbox" type="checkbox" value="remember-me">Remember me
+        </label>
+              </div>
+              <div>
+                  <button class="pink-btn">Sign in</button>
+              </div>
+          </div>
+          <div class="sign-in-btns">
+              <div>
+                  <button id="fb-signin" class="server-btn fb-btn"><i class="fab fa-facebook-f"></i> Sign in with Facebook</button>
+              </div>
+              <div>
+                  <button id="google_signin" class="server-btn google-btn"><i class="fab fa-google"></i> Sign in with Google</button>
+              </div>
+          </div>
+      </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+  <script>
+
+  var allPages = document.getElementsByClassName('page');
+
+
+  var home = new Vue ({
+    el: '#home',
+    data: {},
+    methods: {
+      hideAll: function(){
+        for (var i = 0; i < allPages.length; i++) {
+          allPages[i].classList.add('hidden');
+        }
+      },
+      showAnimation: function(){
+        home.hideAll();
+        document.getElementById('animation').classList.remove('hidden');
+      },
+      showHome: function(){
+        home.hideAll();
+        document.getElementById('home').classList.remove('hidden');
+      }
+    }
+  })
+  home.showAnimation();
+
+    function snap() {
+      document.getElementById('polaroid').classList.toggle('move');
+    }
+
+    function create() {
+      document.getElementById('animation').classList.add('fadeout');
+      logoFadeIn();
+    }
+
+
+    function logoFadeIn(){
+      var div = document.getElementById('title');
+      var img = document.createElement('img');
+      img.src = "logoo.png";
+      img.classList.add('fadein');
+
+      div.classList.add('flex');
+      div.appendChild(img);
+      home.showHome();
+      }
+
+  </script>
+
+</body>
+
+</html>
